@@ -22,6 +22,7 @@ export default function CameraPage() {
   const model = plugin.state === "loaded" ? plugin.model : undefined;
 
   const { resize } = useResizePlugin();
+
   const frameProcessor = useFrameProcessor(
     (frame) => {
       "worklet";
@@ -37,6 +38,7 @@ export default function CameraPage() {
         });
         // 2. Run model with given input buffer synchronously
         const outputs = model.runSync([resized]);
+
         let maxValue = -Infinity;
         let maxKey = "";
         for (const key in outputs[0]) {
